@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Cm_DiehardSample>
+            <version>0.1</version>
+        </Cm_DiehardSample>
+    </modules>
+    <global>
+        <helpers>
+            <diehardsample>
+                <class>Cm_DiehardSample_Helper</class>
+            </diehardsample>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <Cm_DiehardSample>
+                    <file>diehardsample.xml</file>
+                </Cm_DiehardSample>
+            </updates>
+        </layout>
+        <events>
+            <!-- Collect all loaded cache tags to associate with page -->
+            <!-- DISABLED
+            <model_load_after>
+                <observers>
+                    <diehard>
+                        <type>singleton</type>
+                        <class>diehard/observer</class>
+                        <method>modelLoadAfter</method>
+                    </diehard>
+                </observers>
+            </model_load_after>
+            -->
+        </events>
+        <diehard>
+            <!-- Cacheable actions and their lifetimes -->
+            <actions>
+                <catalog_product_view>86400</catalog_product_view>
+                <cms_page_view>86400</cms_page_view>
+                <cms_index_index>86400</cms_index_index>
+            </actions>
+
+            <!-- Tags that will be excluded from being used for tagging pages -->
+            <ignored_tags>
+                <cms_block/>
+                <catalog_product/>
+            </ignored_tags>
+        </diehard>
+    </frontend>
+</config>

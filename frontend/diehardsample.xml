@@ -1,0 +1,65 @@
+<layout version="0.1.0">
+    <default>
+
+        <!-- Fix welcome message for 1.8+ -->
+        <reference name="welcome">
+            <action method="setBlockIsDynamic" />
+            <action method="addDefaultIgnored" />
+            <action method="ignoreBlockUnless">
+                <args>
+                    <customer>customer/session::customer_id</customer>
+                    <checkout>checkout/session::quote_id</checkout>
+                </args>
+            </action>
+            <action method="callHelper"><helper>diehardsample</helper></action>
+        </reference>
+
+        <!-- Make links block dynamic -->
+        <reference name="top.links">
+            <action method="setBlockIsDynamic"><selector>p.welcome-msg + ul.links</selector></action>
+            <action method="addDefaultIgnored" />
+            <action method="ignoreBlockUnless">
+                <args>
+                    <customer>customer/session::customer_id</customer>
+                    <checkout>checkout/session::quote_id</checkout>
+                </args>
+            </action>
+        </reference>
+
+    </default>
+
+    <!-- Make links block cache-friendly -->
+    <customer_logged_in>
+        <reference name="top.links">
+            <action method="callHelper"><helper>diehardsample</helper></action>
+        </reference>
+    </customer_logged_in>
+
+    <!-- Add CMS Page cache tags for automatic invalidation on page save. -->
+    <cms_page_view>
+        <reference name="cms_page">
+            <action method="addCacheTagsFromModel"><type>singleton</type><key>cms/page</key></action>
+        </reference>
+    </cms_page_view>
+
+    <!-- Blocks that may be rendered for dynamic block replacement -->
+    <DIEHARD_default>
+        <block type="page/html_welcome" name="welcome" as="welcome" />
+        <block type="page/template_links" name="top.links" as="topLinks">
+            <action method="addLink" translate="label title" module="customer">
+                <label>My Account</label>
+                <url helper="customer/getAccountUrl"/>
+                <title>My Account</title>
+                <prepare/>
+                <urlParams/>
+                <position>10</position>
+             </action>
+            <block type="checkout/links" name="checkout_cart_link">
+                <action method="addCartLink"></action>
+                <action method="addCheckoutLink"></action>
+            </block>
+            <block type="wishlist/links" name="wishlist_link" />
+            <action method="addLinkBlock"><blockName>wishlist_link</blockName></action>
+        </block>
+    </DIEHARD_default>
+</layout>

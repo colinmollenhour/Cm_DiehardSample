@@ -1,0 +1,5 @@
+# Cm_DiehardSample - cache helper for Cm_Diehard
+code                                   app/code/community/Cm/DiehardSample/
+frontend/*.xml                         app/design/frontend/base/default/layout/
+#frontend/template                      app/design/frontend/base/default/template/diehardsample/
+Cm_DiehardSample.xml                   app/etc/modules/
