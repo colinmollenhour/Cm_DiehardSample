@@ -36,11 +36,11 @@
     </DIEHARD_CACHED_customer_logged_in>
 
     <!-- Add CMS Page cache tags for automatic invalidation on page save. -->
-    <DIEHARD_CACHED_cms_page_view>
+    <DIEHARD_CACHED_cms_page>
         <reference name="cms_page">
             <action method="addCacheTagsFromModel"><type>singleton</type><key>cms/page</key></action>
         </reference>
-    </DIEHARD_CACHED_cms_page_view>
+    </DIEHARD_CACHED_cms_page>
 
     <!-- Blocks that may be rendered for dynamic block replacement -->
     <DIEHARD_DYNAMIC_default>
