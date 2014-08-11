@@ -1,5 +1,5 @@
 <layout version="0.1.0">
-    <default>
+    <DIEHARD_CACHED_default>
 
         <!-- Fix welcome message for 1.8+ -->
         <reference name="welcome">
@@ -26,24 +26,24 @@
             </action>
         </reference>
 
-    </default>
+    </DIEHARD_CACHED_default>
 
     <!-- Make links block cache-friendly -->
-    <customer_logged_in>
+    <DIEHARD_CACHED_customer_logged_in>
         <reference name="top.links">
             <action method="callHelper"><helper>diehardsample</helper></action>
         </reference>
-    </customer_logged_in>
+    </DIEHARD_CACHED_customer_logged_in>
 
     <!-- Add CMS Page cache tags for automatic invalidation on page save. -->
-    <cms_page_view>
+    <DIEHARD_CACHED_cms_page_view>
         <reference name="cms_page">
             <action method="addCacheTagsFromModel"><type>singleton</type><key>cms/page</key></action>
         </reference>
-    </cms_page_view>
+    </DIEHARD_CACHED_cms_page_view>
 
     <!-- Blocks that may be rendered for dynamic block replacement -->
-    <DIEHARD_default>
+    <DIEHARD_DYNAMIC_default>
         <block type="page/html_welcome" name="welcome" as="welcome" />
         <block type="page/template_links" name="top.links" as="topLinks">
             <action method="addLink" translate="label title" module="customer">
@@ -61,5 +61,5 @@
             <block type="wishlist/links" name="wishlist_link" />
             <action method="addLinkBlock"><blockName>wishlist_link</blockName></action>
         </block>
-    </DIEHARD_default>
+    </DIEHARD_DYNAMIC_default>
 </layout>
